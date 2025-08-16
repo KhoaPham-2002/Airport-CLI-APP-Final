@@ -1,3 +1,6 @@
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useMemo, useState } from "react";
 import { getCities, createCity, deleteCity, updateCity } from "../api/cities";
 
@@ -99,7 +102,6 @@ export default function CityTable() {
         Total cities: {cities.length} · Total population: {totalPopulation.toLocaleString()}
       </p>
 
-      {/* Create form */}
       <form onSubmit={onCreate}
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr auto", gap: "0.5rem", marginBottom: "1rem" }}>
         <input name="name" placeholder="City name" value={form.name} onChange={onFormChange} />

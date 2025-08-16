@@ -1,3 +1,6 @@
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useState } from "react";
 import { getAircraft, createAircraft, assignAirport, deleteAircraft } from "../api/aircraft";
 
@@ -84,7 +87,6 @@ export default function AircraftTable() {
 
       {err && <div style={{ color: "crimson" }}>{err}</div>}
 
-      {/* Create form */}
       <form onSubmit={onCreate} style={{ display: "flex", gap: 8, marginBottom: 16 }}>
         <input name="type" placeholder="Type" value={form.type} onChange={onFormChange} />
         <input name="numberOfPassengers" type="number" min="0" placeholder="Seats"
@@ -92,7 +94,6 @@ export default function AircraftTable() {
         <button type="submit">Add Aircraft</button>
       </form>
 
-      {/* Assign airport form */}
       <form onSubmit={onAssign} style={{ display: "flex", gap: 8, marginBottom: 16 }}>
         <input name="aircraftId" type="number" min="1" placeholder="Aircraft ID"
                value={assignForm.aircraftId} onChange={onAssignChange} />

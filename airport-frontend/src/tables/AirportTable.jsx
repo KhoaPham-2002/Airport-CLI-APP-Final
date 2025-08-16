@@ -1,3 +1,6 @@
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useMemo, useState } from "react";
 import { getAirports, createAirport, updateAirport, deleteAirport } from "../api/airports";
 import { getCities } from "../api/cities";
@@ -8,12 +11,10 @@ export default function AirportTable() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
-  // Create form
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [cityId, setCityId] = useState("");
 
-  // Inline edit state (simple)
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState("");
   const [editCode, setEditCode] = useState("");
@@ -44,8 +45,6 @@ export default function AirportTable() {
       setErr("Please provide Name, Code, and City.");
       return;
     }
-    // Your Airport.java expects a City object on the entity,
-    // many controllers also accept cityId for convenience.
     const body = {
       name: name.trim(),
       code: code.trim(),
@@ -105,7 +104,6 @@ export default function AirportTable() {
       await deleteAirport(id);
       setAirports((prev) => prev.filter((a) => a.id !== id));
     } catch (e) {
-      // If backend returns 409 due to FK constraints, we’ll show the server message
       setErr(e.message || "Delete failed (airport might be referenced by flights/gates).");
     }
   }
@@ -122,7 +120,6 @@ export default function AirportTable() {
         </div>
       )}
 
-      {/* Create new airport */}
       <form onSubmit={onCreate} style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr 1fr auto", alignItems: "end", marginBottom: 16 }}>
         <div>
           <label style={lbl}>Name</label>
@@ -146,7 +143,6 @@ export default function AirportTable() {
         <button type="submit" style={btn}>Add</button>
       </form>
 
-      {/* Table */}
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
@@ -168,7 +164,6 @@ export default function AirportTable() {
                 <tr key={a.id} style={{ borderTop: "1px solid #eee" }}>
                   <td style={td}>{a.id}</td>
 
-                  {/* Name */}
                   <td style={td}>
                     {isEditing ? (
                       <input value={editName} onChange={(e) => setEditName(e.target.value)} />
@@ -177,7 +172,6 @@ export default function AirportTable() {
                     )}
                   </td>
 
-                  {/* Code */}
                   <td style={td}>
                     {isEditing ? (
                       <input value={editCode} onChange={(e) => setEditCode(e.target.value)} />
@@ -186,7 +180,6 @@ export default function AirportTable() {
                     )}
                   </td>
 
-                  {/* City */}
                   <td style={td}>
                     {isEditing ? (
                       <select value={editCityId} onChange={(e) => setEditCityId(e.target.value)}>
@@ -202,7 +195,6 @@ export default function AirportTable() {
                     )}
                   </td>
 
-                  {/* Actions */}
                   <td style={td}>
                     {!isEditing ? (
                       <>

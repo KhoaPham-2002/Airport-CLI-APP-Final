@@ -1,4 +1,6 @@
-// src/tables/GateTable.jsx
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useMemo, useState } from "react";
 import {
   getGates,
@@ -26,7 +28,7 @@ export default function GateTable() {
     id: null,
     gateNumber: "",
     terminal: "",
-    departureGate: true, // backend field
+    departureGate: true, 
     airportId: "",
     aircraftId: "",
   });
@@ -154,7 +156,6 @@ export default function GateTable() {
     <div>
       <h2>Gates</h2>
 
-      {/* Filters */}
       <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 16 }}>
         <label>
           Airport:&nbsp;
@@ -195,7 +196,7 @@ export default function GateTable() {
         </button>
       </div>
 
-      {/* Form */}
+
       <form
         onSubmit={onSubmit}
         style={{ display: "grid", gap: 8, maxWidth: 520, marginBottom: 20 }}

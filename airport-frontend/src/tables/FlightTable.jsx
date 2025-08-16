@@ -1,3 +1,6 @@
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useMemo, useState } from "react";
 import {
   getFlights,
@@ -8,16 +11,12 @@ import {
   deleteFlight,
 } from "../api/flight";
 
-// small helpers
 function toLocalInputValue(dt) {
-  // expects ISO ("2025-08-15T10:00" or "2025-08-15T10:00:00")
   if (!dt) return "";
-  // keep minutes precision for <input type="datetime-local">
   return dt.slice(0, 16);
 }
 
 function fromLocalInputValue(v) {
-  // ensure "YYYY-MM-DDTHH:mm"
   return v || "";
 }
 
@@ -26,7 +25,6 @@ export default function FlightTable() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
-  // create form
   const [form, setForm] = useState({
     flightNumber: "",
     airlineId: "",
@@ -40,7 +38,6 @@ export default function FlightTable() {
     status: "SCHEDULED",
   });
 
-  // edit controls
   const [editingId, setEditingId] = useState(null);
   const [editRow, setEditRow] = useState({
     flightNumber: "",
@@ -55,7 +52,6 @@ export default function FlightTable() {
     status: "SCHEDULED",
   });
 
-  // filters
   const [searchNumber, setSearchNumber] = useState("");
   const [between, setBetween] = useState({ start: "", end: "" });
 
@@ -76,7 +72,6 @@ export default function FlightTable() {
 
   const totalFlights = useMemo(() => rows.length, [rows]);
 
-  // ------- create -------
   const onCreateChange = (e) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
@@ -127,7 +122,6 @@ export default function FlightTable() {
     }
   };
 
-  // ------- edit -------
   const startEdit = (f) => {
     setEditingId(f.id);
     setEditRow({
@@ -191,7 +185,6 @@ export default function FlightTable() {
     }
   };
 
-  // ------- delete -------
   const onDelete = async (id) => {
     if (!confirm("Delete this flight?")) return;
     setErr("");
@@ -203,7 +196,6 @@ export default function FlightTable() {
     }
   };
 
-  // ------- filters -------
   const onSearchNumber = async (e) => {
     e.preventDefault();
     if (!searchNumber.trim()) return loadAll();
@@ -236,7 +228,6 @@ export default function FlightTable() {
     <div style={{ maxWidth: 1200, margin: "2rem auto", padding: "1rem" }}>
       <h1>Flights</h1>
 
-      {/* Create flight */}
       <form onSubmit={onCreate}
             style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 8, marginBottom: 12 }}>
         <input name="flightNumber" placeholder="Flight # (e.g., AC123)" value={form.flightNumber} onChange={onCreateChange} />
@@ -254,7 +245,6 @@ export default function FlightTable() {
         <button type="submit" style={{ gridColumn: "span 6" }}>Add Flight</button>
       </form>
 
-      {/* Quick search + between filter */}
       <div style={{ display: "flex", gap: 12, marginBottom: 16, flexWrap: "wrap" }}>
         <form onSubmit={onSearchNumber} style={{ display: "flex", gap: 8 }}>
           <input placeholder="Search by Flight #"

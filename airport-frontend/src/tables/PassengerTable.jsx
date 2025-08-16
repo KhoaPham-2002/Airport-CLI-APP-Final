@@ -1,3 +1,6 @@
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { useEffect, useState } from "react";
 import { getPassengers, createPassenger, updatePassenger, deletePassenger } from "../api/passengers";
 import { getCities } from "../api/cities";
@@ -8,13 +11,11 @@ export default function PassengerTable() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
-  // Create form
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName]   = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [cityId, setCityId] = useState("");
 
-  // Edit form
   const [editingId, setEditingId] = useState(null);
   const [eFirstName, setEFirstName] = useState("");
   const [eLastName, setELastName]   = useState("");
@@ -50,7 +51,6 @@ export default function PassengerTable() {
       firstName: firstName.trim(),
       lastName: lastName.trim(),
       phoneNumber: phoneNumber.trim(),
-      // Your entity expects City; most controllers accept nested object or cityId:
       city: { id: Number(cityId) },
       cityId: Number(cityId),
     };
@@ -121,7 +121,6 @@ export default function PassengerTable() {
         </div>
       )}
 
-      {/* Create */}
       <form
         onSubmit={onCreate}
         style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr 1fr 1fr auto", alignItems: "end", marginBottom: 16 }}
@@ -152,7 +151,6 @@ export default function PassengerTable() {
         <button type="submit" style={btn}>Add</button>
       </form>
 
-      {/* Table */}
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
