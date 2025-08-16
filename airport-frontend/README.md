@@ -1,4 +1,4 @@
-# Airport Arrivals & Departures Frontend
+# Airport CLI App
 
 A modern **React-based web application** built as the frontend for the **Semester 4 Final Sprint Project**.  
 This UI consumes the Airport REST API and provides interactive views for **flights, arrivals, departures, airlines, and gates**.
