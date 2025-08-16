@@ -1,4 +1,6 @@
-// src/api/gates.js
+//Name: Khoa Pham
+//Project: Final Sprint (Airport-CLI-App)
+//Date: 08/15/2025
 import { apiGet, apiJson } from "./Client";
 
 const BASE = "/api/gates";
